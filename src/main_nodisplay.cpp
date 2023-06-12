@@ -55,12 +55,13 @@ int main(int argc, char** argv)
 	//Convert color image to YCbCr color space
 	if (channels == 3)
 	{
-		image = image.get_channels(0, 2).RGBtoYCbCr();
+		image = image.get_channels(0, 2);
+		// image = image.get_channels(0, 2).RGBtoYCbCr();
 		//Convert the sigma^2 variance to the YCbCr color space
-		long s = sigma * sigma;
-		sigma2[0] = ((66l*66l*s + 129l*129l*s + 25l*25l*s) / (256l*256l));
-		sigma2[1] = ((38l*38l*s + 74l*74l*s + 112l*112l*s) / (256l*256l)),
-		sigma2[2] = ((112l*112l*s + 94l*94l*s + 18l*18l*s) / (256l*256l));
+		// long s = sigma * sigma;
+		// sigma2[0] = ((66l*66l*s + 129l*129l*s + 25l*25l*s) / (256l*256l));
+		// sigma2[1] = ((38l*38l*s + 74l*74l*s + 112l*112l*s) / (256l*256l)),
+		// sigma2[2] = ((112l*112l*s + 94l*94l*s + 18l*18l*s) / (256l*256l));
 	}
 
 	std::cout << "Noise variance for individual channels (YCrCb if color): ";
@@ -101,7 +102,8 @@ int main(int argc, char** argv)
 	
 	if (channels == 3) //color
 		//Convert back to RGB color space
-		image2 = image2.get_channels(0,2).YCbCrtoRGB();
+		image2 = image2.get_channels(0,2);
+		// image2 = image2.get_channels(0,2).YCbCrtoRGB();
 	else
 		image2 = image2.get_channel(0);
 	//Save denoised image
